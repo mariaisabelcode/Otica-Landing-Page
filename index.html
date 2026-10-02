@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ótica Outlet - Saúde Visual com Preço Justo</title>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: #030712; color: #f8fafc; overflow-x: hidden; }
+
+        /* Header Estiloso com Glassmorphism */
+        header { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo-area { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-img { height: 45px; width: auto; border-radius: 8px; }
+        .logo-text { font-size: 1.1rem; font-weight: bold; color: #ffffff; letter-spacing: 0.5px; }
+        .btn-whats { background: linear-gradient(135deg, #16a34a, #15803d); color: white; padding: 0.6rem 1.25rem; border-radius: 9999px; text-decoration: none; font-size: 0.875rem; font-weight: 600; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4); transition: all 0.3s; }
+        .btn-whats:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(22, 163, 74, 0.6); }
+
+        /* Hero Section Moderna */
+        .hero { position: relative; padding: 8rem 1rem 6rem; text-align: center; background: radial-gradient(circle at center, #1e3a8a25 0%, transparent 70%); }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: #3b82f6; filter: blur(120px); opacity: 0.15; z-index: -1; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .badge { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; font-size: 0.75rem; padding: 0.35rem 1rem; border-radius: 9999px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .hero h1 { font-size: 3.5rem; margin: 1.5rem 0; font-weight: 900; background: linear-gradient(to right, #ffffff, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; color: #94a3b8; margin-bottom: 2.5rem; line-height: 1.6; }
+        .hero-btn { background: #ffffff; color: #0f172a; padding: 1.25rem 3rem; border-radius: 1rem; font-weight: bold; text-decoration: none; display: inline-block; box-shadow: 0 10px 25px rgba(255,255,255,0.1); transition: all 0.3s; }
+        .hero-btn:hover { background: #e2e8f0; transform: scale(1.05); }
+
+        /* Seção Interativa UAU (Simulador de Estilos) */
+        .interactive-section { max-width: 1000px; margin: 4rem auto; padding: 0 1rem; }
+        .simulator-box { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 2.5rem; text-align: center; }
+        .simulator-box h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+        .simulator-box p { color: #94a3b8; margin-bottom: 2rem; }
+        .options-grid { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .opt-btn { background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.75rem; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .opt-btn:hover, .opt-btn.active { background: #3b82f6; border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.5); }
+        .preview-display { font-size: 5rem; padding: 2rem; background: rgba(15, 23, 42, 0.8); border-radius: 1rem; display: inline-block; margin-bottom: 1.5rem; border: 1px dashed rgba(255,255,255,0.1); transition: transform 0.3s; }
+        .preview-description { font-size: 1.1rem; color: #38bdf8; font-weight: 500; min-height: 2rem; }
+
+        /* Cards de Destaque */
+        .features { padding: 5rem 1rem; max-width: 1200px; margin: 0 auto; }
+        .features-title { text-align: center; font-size: 2.2rem; margin-bottom: 3.5rem; font-weight: 800; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .card { background: rgba(15, 23, 42, 0.6); padding: 2.5rem 2rem; border-radius: 1.25rem; border: 1px solid rgba(255,255,255,0.06); transition: all 0.4s; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, transparent, #3b82f6, transparent); opacity: 0; transition: opacity 0.4s; }
+        .card:hover { transform: translateY(-8px); border-color: rgba(59,130,246,0.4); background: rgba(30, 41, 59, 0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .card:hover::before { opacity: 1; }
+        .card-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+        .card h4 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; color: #fff; }
+        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+        /* Rodapé */
+        footer { background: #020617; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; padding: 3rem 1rem; text-align: center; font-size: 0.9rem; }
+        footer p + p { margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <!-- Certifique-se de salvar sua logo como logo.png na mesma pasta -->
+                <img src="logo.png" alt="Ótica Outlet Logo" class="logo-img">
+                <span class="logo-text">Ótica Outlet</span>
+            </div>
+            <a href="https://wa.me/5577991410081" target="_blank" class="btn-whats">Fale Conosco</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <span class="badge">#ÓticaOutlet Iramaia e Itaetê</span>
+            <h1>Enxergue o mundo com uma nova perspectiva</h1>
+            <p>Proporcionamos saúde visual de alta qualidade com preço justo[cite: 3]. As melhores armações e lentes que unem estilo, conforto e economia para você.</p>
+            <a href="https://wa.me/5577991410081" target="_blank" class="hero-btn">Garantir Meu Atendimento</a>
+        </div>
+    </section>
+
+    <!-- Seção Interativa "Uau" (Simulador Rápido) -->
+    <section class="interactive-section" data-aos="fade-up" data-aos-duration="1000">
+        <div class="simulator-box">
+            <h3>Descubra Seu Estilo</h3>
+            <p>Clique nos botões abaixo para testar visualmente qual categoria combina mais com o seu momento:</p>
+            <div class="options-grid">
+                <button class="opt-btn active" onclick="mudarEstilo('grau', '👓', 'Armações Modernas e Leves para o seu dia a dia')">Óculos de Grau</button>
+                <button class="opt-btn" onclick="mudarEstilo('solar', '🕶️', 'Proteção UV Máxima com Alto Estilo e Atitude')">Óculos Solares</button>
+                <button class="opt-btn" onclick="mudarEstilo('premium', '✨', 'Lançamentos Exclusivos Direto das Feiras do Setor')">Nova Coleção</button>
+            </div>
+            <div>
+                <div id="previewIcon" class="preview-display">👓</div>
+                <div id="previewText" class="preview-description">Armações Modernas e Leves para o seu dia a dia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Categorias -->
+    <section class="features">
+        <h3 class="features-title" data-aos="fade-up">Por que escolher a Ótica Outlet?</h3>
+        <div class="grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon">💎</div>
+                <h4>Qualidade Garantida</h4>
+                <p>Trabalhamos com materiais de ponta, garantindo durabilidade, conforto ergonômico e lentes com alta precisão óptica.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">🏷️</div>
+                <h4>Preço Justo de Verdade</h4>
+                <p>O conceito outlet que cabe no seu bolso[cite: 3], permitindo que você renove o visual sem comprometer o orçamento.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon">🚀</div>
+                <h4>Atendimento Exclusivo</h4>
+                <p>Suporte dedicado via WhatsApp para te ajudar a escolher a armação perfeita que combina perfeitamente com o seu formato de rosto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 Ótica Outlet. Todos os direitos reservados.</p>
+        <p>Atendimento presencial e entregas em Iramaia e Itaetê - BA[cite: 3]</p>
+    </footer>
+
+    <!-- Scripts de Interação e Animação -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 80 });
+
+        // Função do Simulador Interativo
+        function mudarEstilo(tipo, icone, texto) {
+            // Remove a classe active de todos os botões
+            document.querySelectorAll('.opt-btn').forEach(btn => btn.classList.remove('active'));
+            // Adiciona no botão clicado
+            event.target.classList.add('active');
+
+            // Atualiza o ícone e o texto com animação simples
+            const displayIcon = document.getElementById('previewIcon');
+            const displayText = document.getElementById('previewText');
+
+            displayIcon.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                displayIcon.innerText = icone;
+                displayText.innerText = texto;
+                displayIcon.style.transform = 'scale(1)';
+            }, 150);
+        }
+    </script>
+</body>
+</html>
